@@ -13,6 +13,7 @@
 // @downloadURL  https://raw.githubusercontent.com/dv-001/userscripts/master/YouTube/decluttered-ytsearch/decluttered-ytsearch.user.js
 // @updateURL    https://raw.githubusercontent.com/dv-001/userscripts/master/YouTube/decluttered-ytsearch/decluttered-ytsearch.user.js
 // @supportURL   https://github.com/dv-001/userscripts/issues
+// @license MIT
 // ==/UserScript==
 
 (function () {
