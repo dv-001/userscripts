@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.0
+// @version      0.1.1
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -274,7 +274,7 @@
 				flex-wrap: nowrap;
 				row-gap: 1rem;
 
-				background-color: var(--yt-spec-static-overlay-additive-background);
+				background-color: var(--yt-spec-overlay-additive-background);
 				border: 2px solid var(--yt-spec-grey-4);
 				border-radius: 1.5rem;
 				padding: 1rem;
@@ -317,7 +317,7 @@
 			}
 
 			.dyts-setting-row input[type="number"] {
-				width: 2.25rem;
+				width: auto;
 				margin-left: 0.5rem;
 				margin-right: 0.5rem;
 				background-color: var(--yt-spec-badge-chip-background);
