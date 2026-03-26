@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.2
+// @version      0.1.3
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
