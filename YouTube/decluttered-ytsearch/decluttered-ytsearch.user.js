@@ -129,6 +129,13 @@
 			hideWatchedVideos: 'Hide videos more than'
 		};
 
+		// Selectors for registering row mouse events
+		const simpleSelectors = {
+			hideShelves: SELECTORS.shelves.join(', '),
+			hideShortsGrid: SELECTORS.shortsGrid,
+			hideShorts: SELECTORS.shorts
+		};
+
 		for (const key in CONFIG) {
 			if (typeof CONFIG[key] != 'boolean') {
 				continue;
@@ -186,6 +193,29 @@
 					percentageInput.disabled = !e.target.checked;
 				});
 			}
+
+			// Highlight the elements that will be removed by this toggle when hovered
+			row.addEventListener('mouseover', () => {
+				if (key === "hideWatchedVideos") {
+					const percentage = CONFIG.watchedPercentage;
+					document.querySelectorAll(SELECTORS.watched).forEach((progressBar) => {
+						const width = parseInt(progressBar.style.width, 10);
+						if (!isNaN(width) && width >= percentage) {
+							const videoRenderer = progressBar.closest('ytd-video-renderer');
+							if (videoRenderer) videoRenderer.classList.add("dyts-preview", "dyts-preview-removal");
+						}
+					});
+				} else if (simpleSelectors[key]) {
+					document.querySelectorAll(simpleSelectors[key]).forEach((elem) => {
+						elem.classList.add("dyts-preview", "dyts-preview-removal");
+					});
+				}
+			});
+			row.addEventListener('mouseout', (e) => {
+				document.querySelectorAll(".dyts-preview-removal").forEach((elem) => {
+					elem.classList.remove("dyts-preview-removal");
+				});
+			});
 
 			row.appendChild(label);
 			panel.appendChild(row);
@@ -303,7 +333,7 @@
 				display: inherit;
 			}
 
-			dyts-setting-row .dyts-setting-disabled label {
+			.dyts-setting-row .dyts-setting-disabled label {
 				color: #f1f1f1b8
 			}
 
@@ -328,6 +358,47 @@
 				border-radius: 0.5rem;
 				padding: 0.25rem;
 				text-align: center;
+			}
+
+			/* Preview highlight for elements to be removed */
+			.dyts-preview {
+				position: relative; /* Needed for oversized highlight background */
+			}
+			.dyts-preview-removal { 
+				content: "";
+			}
+			.dyts-preview-removal::before {
+				content: "";
+				position: absolute;
+				inset: -1rem;
+				z-index: -1;
+				outline: 1px solid red;
+				background-color: rgba(255, 78, 78, 0.1);
+			}
+
+			/* Preview highlight base */
+			.dyts-preview {
+					position: relative; 
+			}
+
+			/* The invisible pseudo-element that is permanently attached once hovered */
+			.dyts-preview::before {
+					content: "";
+					position: absolute;
+					inset: -1rem;
+					z-index: -1;
+					outline: 2px solid #ff4e4e;
+					background-color: rgba(255, 78, 78, 0.1);
+					border-radius: 1rem;
+					
+					opacity: 0;
+					transition: opacity 0.2s ease-in-out;
+					pointer-events: none;
+			}
+
+			/* When the removal class is added, fade it in smoothly */
+			.dyts-preview-removal::before {
+					opacity: 1;
 			}
 		`);
 	}
