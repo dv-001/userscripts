@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.3
+// @version      0.1.4
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -276,7 +276,7 @@
 			#dyts-settings-container {
 				margin-left: 8px;
 				border-radius: 50%;
-				background: var(--yt-spec-additive-background);
+				background: var(--yt-sys-color-baseline--additive-background);
 			}
 			#dyts-settings-button {
 				background: none;
@@ -286,11 +286,11 @@
 				height: 40px;
 				padding: 8px;
 				border-radius: 50%;
-				fill: var(--yt-spec-inverted-background);
+				fill: var(--yt-sys-color-baseline--inverted-background);
 			}
 
 			#dyts-settings-button:hover {
-				background-color: var(--yt-spec-additive-background);
+				background-color: var(--yt-sys-color-baseline--additive-background);
 			}
 
 			#dyts-settings-panel {
@@ -306,8 +306,8 @@
 				flex-wrap: nowrap;
 				row-gap: 1rem;
 
-				background-color: color-mix(in srgb, var(--yt-spec-base-background), var(--yt-spec-additive-background));
-				border: 2px solid var(--yt-spec-grey-3);
+				background-color: color-mix(in srgb, var(--yt-sys-color-baseline--base-background), var(--yt-sys-color-baseline--additive-background));
+				border: 2px solid var(--yt-sys-color-baseline--outline-opaque);
 				border-radius: 1.5rem;
 				padding: 1rem;
 				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -317,7 +317,7 @@
 			#dyts-settings-panel h3 {
 				margin: 0 0 10px 0;
 				font-size: 1.75rem;
-				color: var(--yt-spec-text-primary);
+				color: var(--yt-sys-color-baseline--text-primary);
 			}
 
 			.dyts-setting-row label {
@@ -326,7 +326,7 @@
 				cursor: pointer;
 				// padding: 6px 0;
 				font-size: 1.6rem;
-				color: var(--yt-spec-text-primary);
+				color: var(--yt-sys-color-baseline--text-primary);
 			}
 
 			.dyts-setting-row .dyts-setting-enabled label {
@@ -345,16 +345,16 @@
 				margin-right: 12px;
 				width: 18px;
 				height: 18px;
-				accent-color: var(--yt-spec-text-primary);
+				accent-color: var(--yt-sys-color-baseline--text-primary);
 			}
 
 			.dyts-setting-row input[type="number"] {
 				width: auto;
 				margin-left: 0.5rem;
 				margin-right: 0.5rem;
-				background-color: var(--yt-spec-additive-background);
-    			border: 1px solid var(--yt-spec-additive-background);
-				color: var(--yt-spec-text-primary);
+				background-color: var(--yt-sys-color-baseline--additive-background);
+    		border: 1px solid var(--yt-sys-color-baseline--additive-background);
+				color: var(--yt-sys-color-baseline--text-primary);
 				border-radius: 0.5rem;
 				padding: 0.25rem;
 				text-align: center;
@@ -364,7 +364,7 @@
 			.dyts-preview {
 				position: relative; /* Needed for oversized highlight background */
 			}
-			.dyts-preview-removal { 
+			.dyts-preview-removal {
 				content: "";
 			}
 			.dyts-preview-removal::before {
@@ -378,7 +378,7 @@
 
 			/* Preview highlight base */
 			.dyts-preview {
-					position: relative; 
+					position: relative;
 			}
 
 			/* The invisible pseudo-element that is permanently attached once hovered */
@@ -390,7 +390,6 @@
 					outline: 2px solid #ff4e4e;
 					background-color: rgba(255, 78, 78, 0.1);
 					border-radius: 1rem;
-					
 					opacity: 0;
 					transition: opacity 0.2s ease-in-out;
 					pointer-events: none;
