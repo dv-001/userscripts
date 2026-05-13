@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.4
+// @version      0.1.5
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -61,6 +61,11 @@
 
 	// Function to generate CSS rules based on current settings
 	function updateStyles(config) {
+		if (window.location.pathname !== '/results') {
+			styleElement.textContent = '';
+			return;
+		}
+
 		let css = '';
 		if (config.hideShelves) {
 			css += `${SELECTORS.shelves.join(', ')} { display: none !important; }\n`;
@@ -255,6 +260,8 @@
 	// This function checks the URL and decides whether to add the gear/UI.
 	// The stylesheet is always active, regardless of the page.
 	function onPageChange() {
+		updateStyles(CONFIG);
+
 		const isSearchPage = window.location.pathname === '/results';
 		if (isSearchPage) {
 			// Use a small delay or an interval to wait for the search box to be ready
@@ -405,7 +412,6 @@
 	/* --- Invoke --- */
 
 	// Run on script load
-	updateStyles(CONFIG);
 	onPageChange();
 	addGlobalStyles();
 
