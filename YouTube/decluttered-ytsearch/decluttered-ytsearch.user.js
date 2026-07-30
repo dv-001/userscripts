@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.5
+// @version      0.1.6
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -161,7 +161,7 @@
 			checkbox.type = 'checkbox';
 			checkbox.checked = CONFIG[key];
 			checkbox.dataset.key = key;
-			checkbox.style.marginRight = '8px';
+			checkbox.style.marginRight = '0.75rem';
 
 			checkbox.addEventListener('change', (e) => {
 				updateConfig(e.target.dataset.key, e.target.checked);
@@ -246,7 +246,7 @@
 		container.appendChild(panel);
 		const searchbox = document.querySelector(SELECTORS.searchbox);
 		if (searchbox) {
-			searchbox.appendChild(container);
+			searchbox.after(container);
 		}
 	}
 
@@ -281,7 +281,7 @@
 	function addGlobalStyles() {
 		GM_addStyle(`
 			#dyts-settings-container {
-				margin-left: 8px;
+				margin-left: 0.75rem;
 				border-radius: 50%;
 				background: var(--yt-sys-color-baseline--additive-background);
 			}
@@ -289,9 +289,9 @@
 				background: none;
 				border: none;
 				cursor: pointer;
-				width: 40px;
-				height: 40px;
-				padding: 8px;
+				width: 4rem;
+				height: 4rem;
+				padding: 0.7rem;
 				border-radius: 50%;
 				fill: var(--yt-sys-color-baseline--inverted-background);
 			}
@@ -317,12 +317,12 @@
 				border: 2px solid var(--yt-sys-color-baseline--outline-opaque);
 				border-radius: 1.5rem;
 				padding: 1rem;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+				box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.6);
 				backdrop-filter: blur(4rem);
 			}
 
 			#dyts-settings-panel h3 {
-				margin: 0 0 10px 0;
+				margin: 0 0 1rem 0;
 				font-size: 1.75rem;
 				color: var(--yt-sys-color-baseline--text-primary);
 			}
@@ -331,7 +331,6 @@
 				display: flex;
 				align-items: center;
 				cursor: pointer;
-				// padding: 6px 0;
 				font-size: 1.6rem;
 				color: var(--yt-sys-color-baseline--text-primary);
 			}
@@ -349,9 +348,9 @@
 			}
 
 			.dyts-setting-row input[type="checkbox"] {
-				margin-right: 12px;
-				width: 18px;
-				height: 18px;
+				margin-right: 1rem;
+				width: 1.5rem;
+				height: 1.5rem;
 				accent-color: var(--yt-sys-color-baseline--text-primary);
 			}
 
@@ -378,7 +377,7 @@
 				content: "";
 				position: absolute;
 				inset: -1rem;
-				z-index: -1;
+				// z-index: -1;
 				outline: 1px solid red;
 				background-color: rgba(255, 78, 78, 0.1);
 			}
@@ -393,7 +392,7 @@
 					content: "";
 					position: absolute;
 					inset: -1rem;
-					z-index: -1;
+					// z-index: -1;
 					outline: 2px solid #ff4e4e;
 					background-color: rgba(255, 78, 78, 0.1);
 					border-radius: 1rem;
