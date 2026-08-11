@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.6
+// @version      0.1.7
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -29,7 +29,10 @@
 			'ytd-horizontal-card-list-renderer[card-list-style=HORIZONTAL_CARD_LIST_STYLE_TYPE_NARROW_SHELF]'
 		],
 		// Rows of shorts
-		shortsGrid: 'grid-shelf-view-model',
+		shortsGrid: [
+			'grid-shelf-view-model',
+			'ytd-reel-shelf-renderer'
+		],
 		// Individual shorts
 		shorts: 'ytd-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"])',
 		// Watched videos
@@ -71,7 +74,7 @@
 			css += `${SELECTORS.shelves.join(', ')} { display: none !important; }\n`;
 		}
 		if (config.hideShortsGrid) {
-			css += `${SELECTORS.shortsGrid} { display: none !important; }\n`;
+			css += `${SELECTORS.shortsGrid.join(', ')} { display: none !important; }\n`;
 		}
 		if (config.hideShorts) {
 			css += `${SELECTORS.shorts} { display: none !important; }\n`;
