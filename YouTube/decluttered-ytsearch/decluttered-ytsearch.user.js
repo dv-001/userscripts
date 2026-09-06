@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Decluttered YouTube Search
 // @namespace    http://github.com/dv-001
-// @version      0.1.7
+// @version      0.1.8
 // @description  Remove irrelevant/extraneous items from YouTube search results with a toggleable menu.
 // @author       dv-001
 // @match        https://www.youtube.com/*
@@ -36,7 +36,10 @@
 		// Individual shorts
 		shorts: 'ytd-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"])',
 		// Watched videos
-		watched: 'ytd-thumbnail-overlay-resume-playback-renderer #progress',
+		watched: [
+			'ytd-thumbnail-overlay-resume-playback-renderer #progress',
+			'.ytwThumbnailOverlayResumePlaybackRendererThumbnailOverlayResumePlaybackProgress'
+		],
 		// YouTube search bar
 		searchbox: 'yt-searchbox'
 	};
@@ -83,7 +86,7 @@
 			let percentage = config.watchedPercentage;
 			if (percentage && (percentage >= 1 && percentage <= 100)) {
 				for (let i = percentage; i <= 100; i++) {
-					css += `ytd-video-renderer:has(${SELECTORS.watched}[style*='width: ${i}%;']) `
+					css += `ytd-video-renderer:has(${SELECTORS.watched.join(', ')}[style*='width: ${i}%;']) `
 						+ `{ display: none !important; }\n`;
 				}
 			}
